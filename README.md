@@ -1,30 +1,73 @@
-# Forge Game Design
+# FORGE: Web3 Mining Strategy Game
 
-*Automatically synced with your [v0.dev](https://v0.dev) deployments*
+**Built on Solana | Powered by $FORGE**
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/senzsosm-gmailcoms-projects/v0-forge-game-design)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.dev-black?style=for-the-badge)](https://v0.dev/chat/projects/qVGxg4e0p3s)
+---
 
-## Overview
+## 🔍 What is FORGE?
 
-This repository will stay in sync with your deployed chats on [v0.dev](https://v0.dev).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.dev](https://v0.dev).
+**FORGE** is a tactical, map-based Web3 game where players build digital mining empires using the $FORGE token. Stake tokens to claim territory, generate resources, launch raids, and outmaneuver rivals in a persistent, gas-free world.
 
-## Deployment
+---
 
-Your project is live at:
+## 🎮 Core Gameplay
 
-**[https://vercel.com/senzsosm-gmailcoms-projects/v0-forge-game-design](https://vercel.com/senzsosm-gmailcoms-projects/v0-forge-game-design)**
+### 🛠️ Mining
+- Stake $FORGE to claim mines on the world map.
+- Mines generate passive resources each round.
+- Expand territory and optimize for efficiency.
 
-## Build your app
+### ⚔️ Raiding
+- Attack unprotected mines to steal resources.
+- Success depends on timing and strategy.
+- Risk vs. reward adds depth to gameplay.
 
-Continue building your app on:
+### 🛡️ Defense
+- Build traps and shields to protect your mines.
+- Reduce the success of enemy raids.
+- Preserve your yield and maintain dominance.
 
-**[https://v0.dev/chat/projects/qVGxg4e0p3s](https://v0.dev/chat/projects/qVGxg4e0p3s)**
+---
 
-## How It Works
+## 💰 $FORGE Token Utility
 
-1. Create and modify your project using [v0.dev](https://v0.dev)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+| Use Case           | Description                              |
+|--------------------|------------------------------------------|
+| **Mining Power**   | More tokens = higher yield per mine      |
+| **Territory**      | Stake to own and expand territory        |
+| **Defense**        | Fortify mines against enemy raids        |
+| **Crafting**       | Create upgrades and special equipment    |
+| **Governance**     | Vote on mechanics, rules, and updates    |
+| **Seasons**        | Compete in time-limited mining rounds    |
+
+---
+
+## 📈 Marketplace & Economy
+
+- Trade mined resources with other players.
+- Resource prices fluctuate based on supply and demand.
+- Convert resources to $FORGE tokens via a decentralized exchange.
+
+---
+
+## 🗺️ Built on Solana
+
+- ⚡ **Zero Gas Fees** – Client-side simulation means no in-game transaction costs.
+- 🔒 **True Ownership** – Your $FORGE tokens and resources are on-chain assets.
+- 🚀 **Fast & Scalable** – Powered by Solana’s high-speed infrastructure.
+
+---
+
+## 🚀 Get Started
+
+**COMING SOON:**
+- 🪙 $FORGE Token Contract  
+- 🌐 Web Game Client  
+- 📜 Early Access Signup  
+
+**Follow us:** [Twitter/X](https://x.com/forgeonsolana)  
+
+---
+
+**© 2025 FORGE. All rights reserved.**  
+*Strategy Meets On-Chain.*
