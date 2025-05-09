@@ -1,0 +1,1605 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 0%;
+    --foreground: 39 100% 95%;
+
+    --primary: 35 100% 50%;
+    --primary-foreground: 0 0% 0%;
+
+    --secondary: 120 50% 40%;
+    --secondary-foreground: 0 0% 100%;
+
+    --accent: 0 0% 20%;
+    --accent-foreground: 39 100% 95%;
+
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 35 100% 30%;
+    --input: 35 100% 30%;
+    --ring: 35 100% 50%;
+
+    --radius: 0.25rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    image-rendering: pixelated;
+    background-color: #0a0500;
+    position: relative;
+  }
+
+  /* Grid overlay */
+  .grid-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-size: 25px 25px;
+    background-image: linear-gradient(to right, rgba(101, 67, 33, 0.07) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(101, 67, 33, 0.07) 1px, transparent 1px);
+    pointer-events: none;
+  }
+
+  /* Grid background */
+  .grid-bg {
+    background-size: 25px 25px;
+    background-image: linear-gradient(to right, rgba(101, 67, 33, 0.1) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(101, 67, 33, 0.1) 1px, transparent 1px);
+  }
+
+  .mine-grid-bg {
+    background-color: #3d2914;
+    background-size: 25px 25px;
+    background-image: linear-gradient(to right, rgba(101, 67, 33, 0.3) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(101, 67, 33, 0.3) 1px, transparent 1px);
+  }
+
+  /* Pixel art styling */
+  .pixel-borders {
+    @apply border-2 border-amber-800;
+    @apply shadow-[0_0_0_2px_#000000];
+    image-rendering: pixelated;
+  }
+
+  .nav-link {
+    @apply text-amber-200 hover:text-orange-400 transition-colors duration-300 relative;
+  }
+
+  .nav-link::after {
+    content: "";
+    @apply absolute left-0 bottom-0 w-0 h-0.5 bg-orange-500 transition-all duration-300;
+  }
+
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+
+  .hero-text {
+    text-shadow: 2px 2px 0px #000, -2px -2px 0px #000, 2px -2px 0px #000, -2px 2px 0px #000;
+  }
+
+  .mine-zone {
+    @apply absolute border-2 rounded-sm transition-all duration-300 opacity-70 hover:opacity-100 cursor-pointer;
+  }
+
+  .mine-zone-orange {
+    @apply border-orange-500 bg-orange-900/30;
+    @apply shadow-[0_0_12px_rgba(249,115,22,0.7)];
+  }
+
+  .mine-zone-gray {
+    @apply border-gray-500 bg-gray-900/30;
+    @apply shadow-[0_0_12px_rgba(156,163,175,0.7)];
+  }
+
+  .mine-zone-green {
+    @apply border-green-500 bg-green-900/30;
+    @apply shadow-[0_0_12px_rgba(34,197,94,0.7)];
+  }
+
+  .mine-zone-purple {
+    @apply border-purple-500 bg-purple-900/30;
+    @apply shadow-[0_0_12px_rgba(168,85,247,0.7)];
+  }
+
+  .mine-zone-blue {
+    @apply border-blue-500 bg-blue-900/30;
+    @apply shadow-[0_0_12px_rgba(59,130,246,0.7)];
+  }
+
+  .mine-zone-red {
+    @apply border-red-500 bg-red-900/30;
+    @apply shadow-[0_0_12px_rgba(239,68,68,0.7)];
+  }
+
+  .mine-zone-cyan {
+    @apply border-cyan-500 bg-cyan-900/30;
+    @apply shadow-[0_0_12px_rgba(6,182,212,0.7)];
+  }
+
+  .tooltip {
+    @apply absolute bg-black border border-amber-800 p-2 text-xs opacity-0 transition-opacity duration-200 z-10 pointer-events-none;
+    width: 200px;
+  }
+
+  .mine-zone:hover .tooltip {
+    @apply opacity-100;
+  }
+
+  /* Game UI elements */
+  .game-button {
+    @apply bg-orange-600 text-black border-2 border-orange-400 hover:bg-orange-500 transition-colors px-4 py-2 inline-flex items-center justify-center;
+  }
+
+  .game-button-secondary {
+    @apply bg-transparent text-orange-400 border-2 border-orange-600 hover:bg-orange-900/30 transition-colors px-4 py-2 inline-flex items-center justify-center;
+  }
+
+  .game-panel {
+    @apply bg-black/80 border border-amber-800 p-4;
+  }
+
+  .game-heading {
+    @apply text-orange-500 text-xl md:text-2xl;
+  }
+
+  .game-subheading {
+    @apply text-amber-200 text-lg;
+  }
+
+  .game-text {
+    @apply text-amber-100;
+  }
+
+  .game-stat {
+    @apply text-orange-400 font-bold;
+  }
+
+  .game-label {
+    @apply text-amber-200/70;
+  }
+
+  /* Feature boxes */
+  .feature-box {
+    @apply bg-black/60 border border-amber-800 p-4 flex flex-col;
+  }
+
+  .feature-icon {
+    @apply text-orange-500 text-2xl mb-2;
+  }
+
+  .feature-title {
+    @apply text-amber-200 font-bold mb-1;
+  }
+
+  .feature-text {
+    @apply text-amber-100/80 text-sm;
+  }
+
+  /* Token utility */
+  .token-utility-box {
+    @apply bg-black/60 border border-amber-800 p-4 flex flex-col items-center text-center relative overflow-hidden;
+  }
+
+  .token-utility-icon {
+    @apply text-orange-500 text-3xl mb-3;
+  }
+
+  .token-utility-title {
+    @apply text-amber-200 font-bold mb-1;
+  }
+
+  .token-utility-subtitle {
+    @apply text-orange-400 text-sm mb-2;
+  }
+
+  .token-utility-text {
+    @apply text-amber-100/80 text-sm;
+  }
+
+  /* Map elements */
+  .map-container {
+    @apply relative overflow-hidden border-2 border-amber-800;
+  }
+
+  .map-island {
+    @apply relative;
+    background-color: #654321;
+  }
+
+  .map-controls {
+    @apply absolute top-4 right-4 z-20 flex flex-col gap-2;
+  }
+
+  .map-control-button {
+    @apply bg-black/80 border-2 border-orange-600 p-2 text-orange-400 hover:bg-orange-900/50 transition-all duration-200;
+    box-shadow: 0 0 8px rgba(249, 115, 22, 0.4);
+  }
+
+  .map-control-button:hover {
+    box-shadow: 0 0 12px rgba(249, 115, 22, 0.7);
+  }
+
+  .map-control-button:active {
+    transform: scale(0.95);
+  }
+
+  /* Modal */
+  .modal-overlay {
+    @apply fixed inset-0 bg-black/80 flex items-center justify-center z-50;
+  }
+
+  .modal-content {
+    @apply bg-black border-2 border-amber-800 p-6 max-w-md w-full;
+  }
+
+  .modal-header {
+    @apply text-center text-orange-500 text-xl mb-6;
+  }
+
+  .modal-input {
+    @apply bg-black/50 border border-amber-800 p-2 w-full text-amber-100 mb-4;
+  }
+
+  .color-picker {
+    @apply flex flex-wrap gap-2 mb-4;
+  }
+
+  .color-option {
+    @apply w-8 h-8 rounded-full cursor-pointer border-2 border-black hover:border-white transition-all;
+  }
+
+  .color-option.selected {
+    @apply border-white;
+  }
+
+  .slider-container {
+    @apply mb-6;
+  }
+
+  .slider {
+    @apply w-full h-2 bg-amber-900 rounded-lg appearance-none cursor-pointer;
+  }
+
+  .slider::-webkit-slider-thumb {
+    @apply appearance-none w-4 h-4 bg-orange-500 rounded-full;
+  }
+
+  .modal-footer {
+    @apply flex justify-between mt-6;
+  }
+
+  /* Section styling */
+  .section-title {
+    @apply text-3xl md:text-4xl text-orange-500 mb-8 text-center;
+  }
+
+  .section-subtitle {
+    @apply text-xl text-amber-200 mb-4;
+  }
+
+  .section-text {
+    @apply text-amber-100 mb-4;
+  }
+
+  /* Console styling */
+  .forge-console {
+    @apply border border-orange-500 bg-black/50 p-1 text-xs text-orange-400 font-mono;
+  }
+
+  /* Logo styling */
+  .logo-container {
+    @apply relative;
+    width: 120px;
+    height: 60px;
+  }
+
+  .logo-container-large {
+    @apply relative mx-auto;
+    width: 200px;
+    height: 100px;
+  }
+
+  /* World map styling */
+  .world-map-container {
+    @apply relative overflow-hidden border border-amber-800/50 rounded-sm;
+    height: 200px;
+  }
+
+  .world-map-image {
+    @apply object-cover w-full h-full transition-transform duration-700;
+  }
+
+  .world-map-container:hover .world-map-image {
+    transform: scale(1.05);
+  }
+
+  .world-map-overlay {
+    @apply absolute inset-0 bg-gradient-to-b from-transparent to-black/50 pointer-events-none;
+  }
+
+  .mine-marker {
+    @apply absolute w-6 h-6 rounded-full border-2 cursor-pointer transition-all duration-300;
+    animation: pulse 2s infinite;
+  }
+
+  .mine-marker-orange {
+    @apply border-orange-500 bg-orange-500/30;
+    box-shadow: 0 0 12px rgba(249, 115, 22, 0.7);
+  }
+
+  .mine-marker-green {
+    @apply border-green-500 bg-green-500/30;
+    box-shadow: 0 0 12px rgba(34, 197, 94, 0.7);
+  }
+
+  .mine-marker-purple {
+    @apply border-purple-500 bg-purple-500/30;
+    box-shadow: 0 0 12px rgba(168, 85, 247, 0.7);
+  }
+
+  .mine-marker-blue {
+    @apply border-blue-500 bg-blue-500/30;
+    box-shadow: 0 0 12px rgba(59, 130, 246, 0.7);
+  }
+
+  .mine-marker-red {
+    @apply border-red-500 bg-red-500/30;
+    box-shadow: 0 0 12px rgba(239, 68, 68, 0.7);
+  }
+
+  .mine-marker-cyan {
+    @apply border-cyan-500 bg-cyan-500/30;
+    box-shadow: 0 0 12px rgba(6, 182, 212, 0.7);
+  }
+
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.7);
+    }
+    70% {
+      box-shadow: 0 0 0 10px rgba(249, 115, 22, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(249, 115, 22, 0);
+    }
+  }
+
+  /* Grid background with ore deposits */
+  .grid-with-ore {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* NEW FUTURISTIC STYLES */
+
+  /* Animations */
+  @keyframes float {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+
+  @keyframes float-slow {
+    0% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-15px) rotate(5deg);
+    }
+    100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+  }
+
+  @keyframes float-slow-reverse {
+    0% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-15px) rotate(-5deg);
+    }
+    100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+  }
+
+  @keyframes pulse-slow {
+    0% {
+      opacity: 0.7;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0.7;
+    }
+  }
+
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes glitch {
+    0% {
+      transform: translate(0);
+    }
+    20% {
+      transform: translate(-2px, 2px);
+    }
+    40% {
+      transform: translate(-2px, -2px);
+    }
+    60% {
+      transform: translate(2px, 2px);
+    }
+    80% {
+      transform: translate(2px, -2px);
+    }
+    100% {
+      transform: translate(0);
+    }
+  }
+
+  @keyframes typing {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+
+  @keyframes blink {
+    50% {
+      border-color: transparent;
+    }
+  }
+
+  @keyframes progress {
+    0% {
+      width: 0%;
+    }
+    100% {
+      width: 100%;
+    }
+  }
+
+  @keyframes orbit {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes raid-progress {
+    0% {
+      left: 0;
+    }
+    100% {
+      left: calc(100% - 24px);
+    }
+  }
+
+  @keyframes market-line {
+    0% {
+      height: 30%;
+    }
+    20% {
+      height: 60%;
+    }
+    40% {
+      height: 40%;
+    }
+    60% {
+      height: 80%;
+    }
+    80% {
+      height: 50%;
+    }
+    100% {
+      height: 70%;
+    }
+  }
+
+  @keyframes shield-pulse {
+    0% {
+      transform: scale(1);
+      opacity: 0.5;
+    }
+    50% {
+      transform: scale(1.2);
+      opacity: 0.7;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 0.5;
+    }
+  }
+
+  /* Animation classes */
+  .animate-float {
+    animation: float 4s ease-in-out infinite;
+  }
+
+  .animate-float-slow {
+    animation: float-slow 8s ease-in-out infinite;
+  }
+
+  .animate-float-slow-reverse {
+    animation: float-slow-reverse 7s ease-in-out infinite;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse-slow 3s ease-in-out infinite;
+  }
+
+  .animate-fade-in {
+    opacity: 0;
+    animation: fade-in 0.8s ease-out forwards;
+  }
+
+  /* Glowing text */
+  .glow-text {
+    text-shadow: 0 0 10px rgba(249, 115, 22, 0.7), 0 0 20px rgba(249, 115, 22, 0.5);
+  }
+
+  .glow-text-sm {
+    text-shadow: 0 0 5px rgba(249, 115, 22, 0.7), 0 0 10px rgba(249, 115, 22, 0.5);
+  }
+
+  /* Glitch effect */
+  .glitch-text {
+    position: relative;
+  }
+
+  .glitch-text::before,
+  .glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .glitch-text::before {
+    left: 2px;
+    text-shadow: -1px 0 #ff00c1;
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch 5s infinite linear alternate-reverse;
+  }
+
+  .glitch-text::after {
+    left: -2px;
+    text-shadow: -1px 0 #00fff9;
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch 5s infinite linear alternate-reverse;
+  }
+
+  /* Typing text effect */
+  .typing-text {
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 3px solid #f97316;
+    width: 0;
+    animation: typing 3s steps(40, end) forwards, blink 1s step-end infinite;
+  }
+
+  .typing-text-slow {
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 3px solid #f97316;
+    width: 0;
+    animation: typing 5s steps(80, end) forwards, blink 1s step-end infinite;
+    animation-delay: 1s;
+  }
+
+  /* Pixel text */
+  .pixel-text {
+    font-family: var(--font-pixel), monospace;
+    letter-spacing: 1px;
+  }
+
+  /* Cyber button */
+  .cyber-button {
+    @apply relative inline-flex items-center justify-center px-6 py-3 overflow-hidden font-mono font-medium tracking-tighter text-white bg-black border-2 border-orange-500;
+    box-shadow: 0 0 10px rgba(249, 115, 22, 0.5);
+    transition: all 0.3s ease;
+  }
+
+  .cyber-button:hover {
+    @apply bg-orange-900/30;
+    box-shadow: 0 0 20px rgba(249, 115, 22, 0.7);
+  }
+
+  .cyber-button:active {
+    transform: scale(0.97);
+  }
+
+  .cyber-button-text {
+    @apply relative z-10;
+  }
+
+  .cyber-button-glitch {
+    @apply absolute inset-0 opacity-0;
+    background: linear-gradient(45deg, rgba(249, 115, 22, 0.5), transparent, rgba(249, 115, 22, 0.5));
+    transition: opacity 0.3s;
+  }
+
+  .cyber-button:hover .cyber-button-glitch {
+    @apply opacity-100;
+    animation: glitch 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+  }
+
+  .cyber-button-secondary {
+    @apply border-orange-600 text-orange-400;
+    box-shadow: 0 0 10px rgba(249, 115, 22, 0.3);
+  }
+
+  .cyber-button-large {
+    @apply relative inline-flex items-center justify-center px-8 py-4 overflow-hidden font-mono font-medium tracking-tighter text-white bg-black border-2 border-orange-500 text-lg;
+    box-shadow: 0 0 15px rgba(249, 115, 22, 0.5);
+    transition: all 0.3s ease;
+  }
+
+  .cyber-button-large:hover {
+    @apply bg-orange-900/30;
+    box-shadow: 0 0 25px rgba(249, 115, 22, 0.7);
+  }
+
+  /* Cyber panel */
+  .cyber-panel {
+    @apply relative bg-black/80 border-2 border-amber-800 p-6 transition-all duration-300;
+    box-shadow: 0 0 10px rgba(180, 83, 9, 0.3);
+  }
+
+  .cyber-panel::before {
+    content: "";
+    @apply absolute top-0 left-0 w-full h-full pointer-events-none;
+    background: linear-gradient(45deg, rgba(249, 115, 22, 0.1), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .cyber-panel:hover::before {
+    opacity: 1;
+  }
+
+  /* Cyber terminal */
+  .cyber-terminal {
+    @apply bg-black/80 border-2 border-amber-800 overflow-hidden;
+  }
+
+  .cyber-terminal-header {
+    @apply bg-amber-900/30 px-4 py-2 flex justify-between items-center border-b border-amber-800;
+  }
+
+  .cyber-terminal-title {
+    @apply text-amber-200 font-mono text-sm;
+  }
+
+  .cyber-terminal-controls {
+    @apply flex gap-2;
+  }
+
+  .cyber-terminal-control {
+    @apply w-3 h-3 rounded-full;
+    background-color: #f97316;
+  }
+
+  .cyber-terminal-control:nth-child(2) {
+    background-color: #fbbf24;
+  }
+
+  .cyber-terminal-control:nth-child(3) {
+    background-color: #4ade80;
+  }
+
+  .cyber-terminal-content {
+    @apply p-6;
+  }
+
+  /* Add this to the CSS file in the appropriate section */
+
+  .cyber-terminal-inline {
+    @apply relative inline-flex max-w-2xl transition-all duration-300;
+    box-shadow: 0 0 10px rgba(180, 83, 9, 0.3);
+  }
+
+  .cyber-terminal-inline:hover {
+    box-shadow: 0 0 15px rgba(249, 115, 22, 0.5);
+  }
+
+  /* Hover scale effect */
+  .hover-scale {
+    transition: transform 0.3s ease;
+  }
+
+  .hover-scale:hover {
+    transform: scale(1.02);
+  }
+
+  /* Hover glow effect */
+  .hover-glow {
+    transition: box-shadow 0.3s ease;
+  }
+
+  .hover-glow:hover {
+    box-shadow: 0 0 20px rgba(249, 115, 22, 0.5);
+  }
+
+  /* Mining visualization */
+  .mining-visualization {
+    @apply bg-black/50 border border-amber-800 p-4 mt-4;
+  }
+
+  .mining-progress {
+    @apply w-full h-4 bg-black/50 border border-amber-800 mb-4 overflow-hidden;
+  }
+
+  .mining-progress-bar {
+    @apply h-full bg-gradient-to-r from-amber-700 to-orange-500;
+    width: 0;
+    animation: progress 8s ease-in-out infinite;
+  }
+
+  .mining-stats {
+    @apply flex justify-between;
+  }
+
+  .mining-stat {
+    @apply flex flex-col items-center;
+  }
+
+  .mining-stat-label {
+    @apply text-amber-200/70 text-xs mb-1;
+  }
+
+  .mining-stat-value {
+    @apply text-orange-400 font-mono;
+  }
+
+  /* Feature header */
+  .feature-header {
+    @apply flex items-center gap-3 mb-4;
+  }
+
+  .feature-icon-large {
+    @apply text-3xl;
+  }
+
+  /* Feature list */
+  .feature-list {
+    @apply mt-4 space-y-2;
+  }
+
+  .feature-list-item {
+    @apply flex items-center text-amber-100/80 text-sm;
+  }
+
+  .feature-list-item::before {
+    content: ">";
+    @apply text-orange-500 mr-2 font-mono;
+  }
+
+  /* Token utility glow */
+  .token-utility-glow {
+    @apply absolute -bottom-2 left-1/2 w-16 h-8 rounded-full blur-xl -translate-x-1/2 opacity-0 transition-opacity duration-300;
+    background: radial-gradient(circle, rgba(249, 115, 22, 0.7) 0%, rgba(249, 115, 22, 0) 70%);
+  }
+
+  .token-utility-box:hover .token-utility-glow {
+    @apply opacity-100;
+  }
+
+  /* Token visualization */
+  .token-visualization {
+    @apply flex justify-center items-center;
+  }
+
+  .token-circle {
+    @apply relative w-40 h-40 flex items-center justify-center;
+  }
+
+  .token-inner {
+    @apply relative z-10 w-20 h-20 rounded-full bg-orange-900/50 flex items-center justify-center;
+    box-shadow: 0 0 20px rgba(249, 115, 22, 0.7);
+  }
+
+  .token-image {
+    @apply animate-pulse-slow;
+  }
+
+  .token-orbit {
+    @apply absolute inset-0 rounded-full;
+    border: 1px dashed rgba(249, 115, 22, 0.5);
+    animation: orbit 20s linear infinite;
+  }
+
+  .token-satellite {
+    @apply absolute w-4 h-4 rounded-full bg-orange-500;
+    box-shadow: 0 0 10px rgba(249, 115, 22, 0.7);
+  }
+
+  .token-satellite:nth-child(1) {
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .token-satellite:nth-child(2) {
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .token-satellite:nth-child(3) {
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+  }
+
+  /* Tab system */
+  .tab-button {
+    @apply px-4 py-2 bg-black/50 border border-amber-800/50 text-amber-200 flex items-center transition-all duration-300;
+  }
+
+  .tab-button:hover {
+    @apply bg-amber-900/20 text-orange-400;
+  }
+
+  .tab-active {
+    @apply bg-amber-900/30 border-orange-500 text-orange-400;
+    box-shadow: 0 0 10px rgba(249, 115, 22, 0.3);
+  }
+
+  .tab-content {
+    @apply min-h-[300px];
+  }
+
+  /* Raid visualization */
+  .raid-visualization {
+    @apply mt-4;
+  }
+
+  .raid-progress {
+    @apply relative h-12 bg-black/50 border border-amber-800 mb-4 flex items-center;
+  }
+
+  .raid-icon {
+    @apply absolute left-0 w-6 h-6 flex items-center justify-center z-10;
+    animation: raid-progress 4s ease-in-out infinite;
+  }
+
+  .raid-bar {
+    @apply absolute h-2 bg-orange-500/50 top-1/2 -translate-y-1/2;
+    width: 0;
+    animation: progress 4s ease-in-out infinite;
+  }
+
+  .raid-target {
+    @apply absolute right-2;
+  }
+
+  .raid-stats {
+    @apply flex justify-between;
+  }
+
+  .raid-stat {
+    @apply flex flex-col items-center;
+  }
+
+  .raid-stat-label {
+    @apply text-amber-200/70 text-xs mb-1;
+  }
+
+  .raid-stat-value {
+    @apply text-orange-400 font-mono;
+  }
+
+  /* Market visualization */
+  .market-visualization {
+    @apply mt-4;
+  }
+
+  .market-chart {
+    @apply relative h-32 bg-black/50 border border-amber-800 mb-4;
+  }
+
+  .market-chart-grid {
+    @apply absolute inset-0 pointer-events-none;
+    background-size: 20px 20px;
+    background-image: linear-gradient(to right, rgba(249, 115, 22, 0.1) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(249, 115, 22, 0.1) 1px, transparent 1px);
+  }
+
+  .market-chart-line {
+    @apply absolute bottom-0 left-0 w-full;
+    height: 50%;
+  }
+
+  .market-chart-line.iron {
+    height: 40%;
+    background: linear-gradient(to right, transparent, rgba(156, 163, 175, 0.5));
+    animation: market-line-iron 15s ease-in-out infinite;
+  }
+
+  .market-chart-line.copper {
+    height: 30%;
+    background: linear-gradient(to right, transparent, rgba(180, 83, 9, 0.5));
+    animation: market-line-copper 12s ease-in-out infinite;
+  }
+
+  .market-chart-line.gold {
+    height: 60%;
+    background: linear-gradient(to right, transparent, rgba(252, 211, 77, 0.5));
+    animation: market-line-gold 18s ease-in-out infinite;
+  }
+
+  .market-chart-legend {
+    @apply absolute top-2 right-2 bg-black/50 p-2 flex flex-col gap-1 text-xs border border-amber-800/50;
+  }
+
+  .market-legend-item {
+    @apply flex items-center gap-2;
+  }
+
+  .market-legend-color {
+    @apply w-3 h-3;
+  }
+
+  .market-legend-color.iron {
+    background-color: rgba(156, 163, 175, 0.8);
+  }
+
+  .market-legend-color.copper {
+    background-color: rgba(180, 83, 9, 0.8);
+  }
+
+  .market-legend-color.gold {
+    background-color: rgba(252, 211, 77, 0.8);
+  }
+
+  @keyframes market-line-iron {
+    0% {
+      height: 40%;
+    }
+    25% {
+      height: 55%;
+    }
+    50% {
+      height: 35%;
+    }
+    75% {
+      height: 45%;
+    }
+    100% {
+      height: 40%;
+    }
+  }
+
+  @keyframes market-line-copper {
+    0% {
+      height: 30%;
+    }
+    30% {
+      height: 20%;
+    }
+    60% {
+      height: 40%;
+    }
+    100% {
+      height: 30%;
+    }
+  }
+
+  @keyframes market-line-gold {
+    0% {
+      height: 60%;
+    }
+    20% {
+      height: 70%;
+    }
+    40% {
+      height: 65%;
+    }
+    60% {
+      height: 80%;
+    }
+    80% {
+      height: 75%;
+    }
+    100% {
+      height: 60%;
+    }
+  }
+
+  /* Defense visualization */
+  .defense-visualization {
+    @apply mt-4;
+  }
+
+  .defense-map {
+    @apply relative h-32 bg-black/50 border border-amber-800 mb-4;
+  }
+
+  .defense-perimeter {
+    @apply absolute inset-4 border-2 border-dashed border-orange-500/50 rounded-full;
+  }
+
+  .defense-mine {
+    @apply absolute w-10 h-10 bg-amber-800/70 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-sm;
+    background-image: linear-gradient(
+      45deg,
+      rgba(0, 0, 0, 0.1) 25%,
+      transparent 25%,
+      transparent 50%,
+      rgba(0, 0, 0, 0.1) 50%,
+      rgba(0, 0, 0, 0.1) 75%,
+      transparent 75%,
+      transparent
+    );
+    background-size: 8px 8px;
+  }
+
+  /* Add these new styles for the improved defense visualization */
+  .defense-mine-label {
+    @apply absolute text-xs text-amber-200 font-bold;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 12px);
+  }
+
+  .defense-ally {
+    @apply absolute w-6 h-6 bg-green-600/50 rounded-sm text-xs flex items-center justify-center text-black font-bold;
+  }
+
+  .defense-ally-1 {
+    bottom: 25%;
+    right: 25%;
+  }
+
+  .defense-ally-2 {
+    top: 60%;
+    left: 25%;
+  }
+
+  .defense-turret {
+    @apply absolute w-4 h-4 bg-orange-500 rounded-full;
+  }
+
+  .defense-turret-1 {
+    top: 25%;
+    left: 25%;
+  }
+
+  .defense-turret-2 {
+    top: 25%;
+    right: 25%;
+  }
+
+  .defense-turret-3 {
+    bottom: 25%;
+    left: 25%;
+  }
+
+  .defense-drill {
+    @apply absolute w-4 h-4 bg-orange-500 rounded-sm transform rotate-45;
+  }
+
+  .defense-drill-1 {
+    top: 25%;
+    left: 25%;
+  }
+
+  .defense-drill-2 {
+    top: 25%;
+    right: 25%;
+  }
+
+  .defense-drill-3 {
+    bottom: 25%;
+    left: 25%;
+  }
+
+  /* Remove or replace this block
+  .defense-resource {
+    @apply absolute w-3 h-3 bg-yellow-400 rounded-sm animate-pulse-slow;
+  }
+
+  .defense-resource.resource-1 {
+    top: 35%;
+    right: 35%;
+  }
+
+  .defense-resource.resource-2 {
+    bottom: 35%;
+    right: 30%;
+  }
+
+  .defense-resource.resource-3 {
+    top: 60%;
+    left: 40%;
+  }
+*/
+
+  .defense-resource {
+    @apply absolute w-3 h-3 rounded-sm animate-pulse-slow;
+  }
+
+  .defense-resource.resource-orange {
+    @apply bg-orange-500;
+    box-shadow: 0 0 8px rgba(249, 115, 22, 0.7);
+  }
+
+  .defense-resource.resource-blue {
+    @apply bg-blue-500;
+    box-shadow: 0 0 8px rgba(59, 130, 246, 0.7);
+  }
+
+  .defense-resource.resource-green {
+    @apply bg-green-500;
+    box-shadow: 0 0 8px rgba(34, 197, 94, 0.7);
+  }
+
+  .defense-resource.resource-purple {
+    @apply bg-purple-500;
+    box-shadow: 0 0 8px rgba(168, 85, 247, 0.7);
+  }
+
+  .defense-resource.resource-1 {
+    top: 35%;
+    right: 35%;
+  }
+
+  .defense-resource.resource-2 {
+    bottom: 35%;
+    right: 30%;
+  }
+
+  .defense-resource.resource-3 {
+    top: 60%;
+    left: 40%;
+  }
+
+  .defense-resource.resource-4 {
+    top: 30%;
+    left: 30%;
+  }
+
+  .defense-shield {
+    @apply absolute inset-8 border-2 border-orange-400/30 rounded-full;
+    animation: shield-pulse 3s ease-in-out infinite;
+  }
+
+  .defense-stats {
+    @apply flex justify-between;
+  }
+
+  .defense-stat {
+    @apply flex flex-col items-center;
+  }
+
+  .defense-stat-label {
+    @apply text-amber-200/70 text-xs mb-1;
+  }
+
+  .defense-stat-value {
+    @apply text-orange-400 font-mono;
+  }
+
+  /* Hexagonal grid */
+  .hex-grid {
+    @apply flex flex-col items-center;
+  }
+
+  .hex-row {
+    @apply flex flex-wrap justify-center gap-6 mb-6;
+  }
+
+  .hex-row-offset {
+    @apply ml-12;
+  }
+
+  .hex-item {
+    @apply w-64;
+  }
+
+  /* Timeline */
+  .timeline {
+    @apply relative space-y-12 pl-8 before:absolute before:inset-y-0 before:left-0 before:ml-5 before:w-0.5 before:bg-orange-500/30;
+  }
+
+  .timeline-item {
+    @apply relative;
+  }
+
+  .timeline-marker {
+    @apply absolute -left-8 mt-1.5 h-4 w-4 rounded-full border-2 border-orange-500 bg-black;
+    box-shadow: 0 0 10px rgba(249, 115, 22, 0.5);
+  }
+
+  .timeline-date {
+    @apply mb-2 text-sm font-bold text-orange-500;
+  }
+
+  .timeline-content {
+    @apply relative;
+  }
+
+  .timeline-features {
+    @apply mt-4 space-y-2;
+  }
+
+  .timeline-feature {
+    @apply flex items-center text-amber-100/80 text-sm;
+  }
+}
+
+/* Enhanced Defense Visualization */
+.defense-visualization {
+  @apply mt-4;
+}
+
+.defense-map {
+  @apply relative h-48 bg-black/80 border border-amber-800 mb-4 overflow-hidden;
+  background-image: radial-gradient(circle at center, rgba(249, 115, 22, 0.2) 0%, transparent 70%);
+}
+
+/* Futuristic grid background */
+.defense-grid {
+  @apply absolute inset-0 pointer-events-none;
+  background-size: 20px 20px;
+  background-image: linear-gradient(to right, rgba(249, 115, 22, 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(249, 115, 22, 0.1) 1px, transparent 1px);
+  animation: grid-pulse 8s ease-in-out infinite;
+}
+
+@keyframes grid-pulse {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+/* Enhanced perimeter */
+.defense-perimeter {
+  @apply absolute rounded-full;
+  top: 20%;
+  left: 20%;
+  width: 60%;
+  height: 60%;
+  border: 1px dashed rgba(249, 115, 22, 0.5);
+  animation: rotate 30s linear infinite;
+}
+
+/* Central mine with holographic effect */
+.defense-mine {
+  @apply absolute bg-amber-800/70 rounded-sm flex items-center justify-center;
+  top: 50%;
+  left: 50%;
+  width: 40px;
+  height: 40px;
+  transform: translate(-50%, -50%);
+  background-image: linear-gradient(
+    45deg,
+    rgba(0, 0, 0, 0.2) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(0, 0, 0, 0.2) 50%,
+    rgba(0, 0, 0, 0.2) 75%,
+    transparent 75%,
+    transparent
+  );
+  background-size: 8px 8px;
+  box-shadow: 0 0 15px rgba(249, 115, 22, 0.7);
+}
+
+.defense-mine-hologram {
+  @apply absolute rounded-full;
+  width: 20px;
+  height: 20px;
+  background: rgba(249, 115, 22, 0.3);
+  box-shadow: 0 0 10px rgba(249, 115, 22, 0.7);
+  animation: pulse-slow 2s ease-in-out infinite;
+}
+
+/* Defense systems */
+.defense-systems {
+  @apply absolute inset-0;
+}
+
+.defense-drill {
+  @apply absolute w-5 h-5 bg-orange-500 rounded-sm transform rotate-45;
+  box-shadow: 0 0 10px rgba(249, 115, 22, 0.7);
+  animation: pulse-slow 3s ease-in-out infinite;
+}
+
+.defense-drill-1 {
+  top: 25%;
+  left: 25%;
+}
+
+.defense-drill-2 {
+  top: 25%;
+  right: 25%;
+}
+
+.defense-drill-3 {
+  bottom: 25%;
+  left: 25%;
+}
+
+.defense-connection {
+  @apply absolute bg-orange-500/30;
+  height: 2px;
+  width: 40px;
+  top: 50%;
+  left: 100%;
+  transform-origin: left center;
+}
+
+.defense-drill-1 .defense-connection {
+  transform: rotate(45deg);
+}
+
+.defense-drill-2 .defense-connection {
+  transform: rotate(-45deg);
+  left: -40px;
+}
+
+.defense-drill-3 .defense-connection {
+  transform: rotate(-45deg);
+}
+
+/* Enhanced shield system */
+.defense-shield {
+  @apply absolute rounded-full border-2 border-orange-400/30;
+  top: 35%;
+  left: 35%;
+  width: 30%;
+  height: 30%;
+  animation: shield-pulse 3s ease-in-out infinite;
+}
+
+.defense-shield-outer {
+  @apply absolute rounded-full border border-orange-400/20;
+  top: 30%;
+  left: 30%;
+  width: 40%;
+  height: 40%;
+  animation: shield-pulse 4s ease-in-out infinite reverse;
+}
+
+/* Labels with futuristic styling */
+.defense-mine-label {
+  @apply absolute text-xs text-amber-200 font-bold bg-black/50 px-1 rounded-sm;
+  top: 60%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-shadow: 0 0 5px rgba(249, 115, 22, 0.7);
+}
+
+/* Allied guilds */
+.defense-allies {
+  @apply absolute inset-0;
+}
+
+.defense-ally {
+  @apply absolute w-8 h-6 bg-green-600/50 rounded-sm text-xs flex items-center justify-center text-black font-bold;
+  box-shadow: 0 0 8px rgba(34, 197, 94, 0.7);
+}
+
+.defense-ally-1 {
+  bottom: 25%;
+  right: 25%;
+}
+
+.defense-ally-2 {
+  top: 60%;
+  left: 25%;
+}
+
+.defense-ally-connection {
+  @apply absolute bg-green-500/30;
+  height: 2px;
+  width: 40px;
+  top: 50%;
+  transform-origin: right center;
+}
+
+.defense-ally-1 .defense-ally-connection {
+  left: -40px;
+  transform: rotate(-45deg);
+}
+
+.defense-ally-2 .defense-ally-connection {
+  right: -40px;
+  transform: rotate(45deg);
+}
+
+/* Resource nodes */
+.defense-resources {
+  @apply absolute inset-0;
+}
+
+.defense-resource {
+  @apply absolute w-4 h-4 rounded-sm;
+  animation: resource-pulse 3s ease-in-out infinite;
+}
+
+.resource-indicator {
+  @apply absolute w-2 h-2 rounded-full;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: pulse-slow 2s ease-in-out infinite;
+}
+
+.resource-orange {
+  @apply bg-orange-500/30;
+  box-shadow: 0 0 8px rgba(249, 115, 22, 0.7);
+}
+
+.resource-orange .resource-indicator {
+  @apply bg-orange-500;
+}
+
+.resource-blue {
+  @apply bg-blue-500/30;
+  box-shadow: 0 0 8px rgba(59, 130, 246, 0.7);
+}
+
+.resource-blue .resource-indicator {
+  @apply bg-blue-500;
+}
+
+.resource-green {
+  @apply bg-green-500/30;
+  box-shadow: 0 0 8px rgba(34, 197, 94, 0.7);
+}
+
+.resource-green .resource-indicator {
+  @apply bg-green-500;
+}
+
+.resource-purple {
+  @apply bg-purple-500/30;
+  box-shadow: 0 0 8px rgba(168, 85, 247, 0.7);
+}
+
+.resource-purple .resource-indicator {
+  @apply bg-purple-500;
+}
+
+.resource-1 {
+  top: 35%;
+  right: 35%;
+}
+
+.resource-2 {
+  bottom: 35%;
+  right: 30%;
+}
+
+.resource-3 {
+  top: 60%;
+  left: 40%;
+}
+
+.resource-4 {
+  top: 30%;
+  left: 30%;
+}
+
+@keyframes resource-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+/* Scanning effect */
+.defense-scan-line {
+  @apply absolute bg-orange-500/20 w-full h-2 left-0;
+  animation: scan-line 4s linear infinite;
+}
+
+@keyframes scan-line {
+  0% {
+    top: -2px;
+  }
+  100% {
+    top: 100%;
+  }
+}
+
+/* Enhanced defense stats */
+.defense-stats {
+  @apply flex justify-between;
+}
+
+.defense-stat {
+  @apply flex flex-col items-center relative;
+}
+
+.defense-stat-icon {
+  @apply w-5 h-5 mb-1 rounded-full bg-orange-900/50 flex items-center justify-center;
+  box-shadow: 0 0 5px rgba(249, 115, 22, 0.5);
+}
+
+.mining-icon::before {
+  content: "⛏️";
+  @apply text-xs;
+}
+
+.drill-icon::before {
+  content: "🔧";
+  @apply text-xs;
+}
+
+.shield-icon::before {
+  content: "🛡️";
+  @apply text-xs;
+}
+
+.defense-stat-label {
+  @apply text-amber-200/70 text-xs mb-1;
+}
+
+.defense-stat-value {
+  @apply text-orange-400 font-mono mb-1;
+}
+
+.defense-stat-bar {
+  @apply h-1 bg-orange-500 rounded-full;
+  max-width: 100%;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
