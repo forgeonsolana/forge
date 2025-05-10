@@ -43,7 +43,12 @@ export default function Navbar() {
           <Link href="/map" className="nav-link">
             Map
           </Link>
-          <Link href="/colosseum" className="nav-link">
+          <Link
+            href="https://arena.colosseum.org/projects/explore/forge"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="nav-link"
+          >
             Colosseum
           </Link>
           <Link
@@ -80,7 +85,13 @@ export default function Navbar() {
           <Link href="/map" className="nav-link py-2" onClick={() => setMobileMenuOpen(false)}>
             Map
           </Link>
-          <Link href="/colosseum" className="nav-link py-2" onClick={() => setMobileMenuOpen(false)}>
+          <Link
+            href="https://arena.colosseum.org/projects/explore/forge"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="nav-link py-2"
+            onClick={() => setMobileMenuOpen(false)}
+          >
             Colosseum
           </Link>
           <Link
